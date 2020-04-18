@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_18_030145) do
+ActiveRecord::Schema.define(version: 2020_04_18_034536) do
 
   create_table "stock_prices", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -26,4 +26,16 @@ ActiveRecord::Schema.define(version: 2020_04_18_030145) do
     t.string "symbol"
   end
 
+  create_table "time_series", force: :cascade do |t|
+    t.string "closing_date"
+    t.float "close"
+    t.float "adjusted_close"
+    t.string "symbol"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "stock_price_id"
+    t.index ["stock_price_id"], name: "index_time_series_on_stock_price_id"
+  end
+
+  add_foreign_key "time_series", "stock_prices"
 end

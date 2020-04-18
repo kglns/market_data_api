@@ -1,3 +1,4 @@
 class StockPrice < ApplicationRecord
-    validate :symbol, presence: true, uniqueness: true
+    validates :symbol, presence: true, uniqueness: true
+    has_many :time_series
 end
