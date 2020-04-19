@@ -1,0 +1,2 @@
+class TimeSeries < ApplicationRecord
+end
