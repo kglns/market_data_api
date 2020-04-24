@@ -2,8 +2,8 @@ module DataService
 
     require 'net/http'
 
-    def self.fetch
-        url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=demo"
+    def self.fetch url
+        # url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=demo"
         uri = URI(url)
         response = Net::HTTP.get_response uri
     end
@@ -83,9 +83,8 @@ module DataService
         end
     end
 
-
-    def self.run
-        result = self.fetch
+    def self.run url
+        result = self.fetch(url)
         st_data = self.extract(result, 'stock_price')
         self.load(st_data, StockPrice)
         ts_data = self.extract(result, 'time_series')
