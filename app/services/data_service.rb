@@ -26,14 +26,14 @@ module DataService
                         data = {
                             :symbol => @symbol,
                             :closing_date => closing_date,
-                            # :open => ts['1. open'],
-                            # :high => ts['2. high'],
-                            # :low => ts['3. low'],
+                            :open => ts['1. open'],
+                            :high => ts['2. high'],
+                            :low => ts['3. low'],
                             :close => ts['4. close'],
                             :adjusted_close => ts['5. adjusted close'],
-                            # :volume => ts['6. volume'],
-                            # :dividend_amount => ts['7. dividend amount'],
-                            # :split_coefficient => ts['8. split coefficient'],
+                            :volume => ts['6. volume'],
+                            :dividend_amount => ts['7. dividend amount'],
+                            :split_coefficient => ts['8. split coefficient'],
                         }
                         final_time_series << data
                     end
@@ -75,7 +75,7 @@ module DataService
                 end
                 object = model.find_by(identifiers)
                 if object
-                    object.update_attributes(item)
+                    object.update(item)
                 else
                     model.create(item)
                 end
