@@ -7,7 +7,7 @@ class TimeSeriesTest < ActiveSupport::TestCase
   end
 
   test "should not create TimeSeries without symbol" do
-    time_series = TimeSeries.new
+    time_series = TimeSeries.new(low: 1.2314)
     assert_not time_series.save
   end
   
