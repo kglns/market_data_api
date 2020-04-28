@@ -2,8 +2,8 @@ module DataService
 
     require 'net/http'
 
+    # url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=demo"
     def self.fetch url
-        # url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=IBM&apikey=demo"
         uri = URI(url)
         response = Net::HTTP.get_response uri
         if response.code == '200'
