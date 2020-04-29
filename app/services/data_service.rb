@@ -13,7 +13,18 @@ module DataService
         end
     end
 
-    def self.extract(res, type)
+    def self.extract(res, extractors=[])
+        @data_hash = JSON.parse(res)
+        if extractors.size > 0
+            extractors.each do |extractor|
+                extracted_data = extractor(@data_hash)
+            end
+        else
+            @data_hash
+        end
+    end
+
+    def self._extract(res, type)
         data_hash = JSON.parse(res)
         if data_hash.include? 'Meta Data'
             meta_data = data_hash['Meta Data']
